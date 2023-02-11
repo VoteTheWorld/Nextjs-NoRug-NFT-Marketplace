@@ -12,6 +12,12 @@ export default function Header() {
                 <Link href="/sell-page">
                     <a className="mr-4 p-6 text-2xl">Sell NFT</a>
                 </Link>
+                <Link href="/withdraw-page">
+                    <a className="mr-4 p-6 text-2xl">Withdraw</a>
+                </Link>
+                <Link href="/refund-page">
+                    <a className="mr-4 p-6 text-2xl">Refund</a>
+                </Link>
                 <ConnectButton moralisAuth={false} />
             </div>
         </nav>

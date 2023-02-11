@@ -2,6 +2,13 @@ import "@/styles/globals.css"
 import { MoralisProvider } from "react-moralis"
 import Header from "../components/header"
 import Head from "next/head"
+import { NotificationProvider } from "web3uikit"
+import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client"
+
+const client = new ApolloClient({
+    cache: new InMemoryCache(),
+    uri: "https://api.studio.thegraph.com/query/42072/norug-marketplace/v0.0.6",
+})
 
 export default function App({ Component, pageProps }) {
     return (
@@ -14,8 +21,12 @@ export default function App({ Component, pageProps }) {
                 />
             </Head>
             <MoralisProvider initializeOnMount={false}>
-                <Header />
-                <Component {...pageProps} />
+                <ApolloProvider client={client}>
+                    <NotificationProvider>
+                        <Header />
+                        <Component {...pageProps} />
+                    </NotificationProvider>
+                </ApolloProvider>
             </MoralisProvider>
         </div>
     )
